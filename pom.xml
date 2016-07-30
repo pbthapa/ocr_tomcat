@@ -13,7 +13,7 @@
 		<version.mvn.compiler>3.2</version.mvn.compiler>
 		<version.mvn.war.plugin>2.6</version.mvn.war.plugin>
 		<version.jersey>2.15</version.jersey>
-		<!-- <version.servlet.api>3.1.0</version.servlet.api> -->
+		<version.servlet.api>3.1.0</version.servlet.api>
 	</properties>
 
 	<dependencies>
@@ -52,6 +52,14 @@
 		<!-- if you are using Jersey client specific features -->
 		<!-- <dependency> <groupId>org.glassfish.jersey.core</groupId> <artifactId>jersey-client</artifactId> 
 			<version>${version.jersey}</version> </dependency> -->
+
+		<!-- servlet 3.1.0 dependency -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${version.servlet.api}</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
