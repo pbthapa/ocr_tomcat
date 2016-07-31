@@ -1,1 +1,1 @@
-web: sh target/bin/webapp
+web: java -Dswarm.http.port=$PORT -war target/ocr-1.0.0-ALPHA.war
