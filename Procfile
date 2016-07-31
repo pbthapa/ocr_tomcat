@@ -1,1 +1,1 @@
-web: java -Dswarm.http.port=$PORT -war target/ocr-1.0.0-ALPHA.war
+web: java -Xmx96m -Xss256k -Dfile.encoding=UTF-8 -XX:MaxMetaspaceSize=48m -Dswarm.http.port=$PORT -jar
