@@ -18,50 +18,33 @@ public class XStoreClient {
 
 	public static void main(String[] args) {
 
-		// String url =
-		// "https://gateway.poslynx.org:24599/thinclient/mobile/api.php";
-		//
-		// HttpClient httpclient = HttpClientBuilder.create().build();
-		//
-		// // RequestBody body = RequestBody.create(MediaType.TEXT_XML,
-		// //
-		// "<PLRequest>\n<Command>CCSALE</Command>\n<Amount>10.00</Amount>\n<Input>EXTERNAL</Input>\n<ClientDate>122515</ClientDate>\n<ClientTime>1350</ClientTime>\n<ClientMAC>FFFFFFFFFFFF</ClientMAC>\n<Lane>VRB_AUS_04</Lane>\n</PLRequest>");
-		// // Request request = Req
-		// //
-		// .url("https://gateway.poslynx.org:24599/thinclient/mobile/api.php")
-		// // .post(body)
-		// // .addHeader("content-type", "text/xml")
-		// // .addHeader("cache-control", "no-cache")
-		// // .build();
-		// //
-		// // Response response = client.newCall(request).execute();
-		//
-		// HttpPost post = new HttpPost(url);
-		// post.addHeader("content-type", "text/xml");
-		// post.addHeader("cache-control", "no-cache");
-		// post.addHeader("body",
-		// "<PLRequest><Command>CCSALE</Command><Amount>10.00</Amount><Input>EXTERNAL</Input><ClientDate>122515</ClientDate><ClientTime>1350</ClientTime><ClientMAC>FFFFFFFFFFFF</ClientMAC><Lane>VRB_AUS_04</Lane></PLRequest>");
+	HttpClient client = HttpClientBuilder.create().build();
+        HttpPost post = new HttpPost("https://gateway.poslynx.org:24599/thinclient/mobile/api.php");
+        try {
+            //Implementation 1
+            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+            nameValuePairs.add(new BasicNameValuePair("Command", "CCSALE"));
+            nameValuePairs.add(new BasicNameValuePair("Amount", "10.00"));
+            nameValuePairs.add(new BasicNameValuePair("Input", "EXTERNAL"));
+            nameValuePairs.add(new BasicNameValuePair("ClientDate", "122515"));
+            nameValuePairs.add(new BasicNameValuePair("ClientTime", "1350"));
+            nameValuePairs.add(new BasicNameValuePair("ClientMAC", "FFFFFFFFFFFF"));
+            nameValuePairs.add(new BasicNameValuePair("Lane", "VRB_AUS_04"));
+            post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
-		HttpClient client = new DefaultHttpClient();
-		HttpPost post = new HttpPost("https://gateway.poslynx.org:24599/thinclient/mobile/api.php");
-		try {
-			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-			nameValuePairs.add(new BasicNameValuePair("content-type", "text/xml"));
-			nameValuePairs.add(new BasicNameValuePair("cache-control", "no-cache"));
-			nameValuePairs.add(new BasicNameValuePair("body", "<PLRequest><Command>CCSALE</Command><Amount>10.00</Amount><Input>EXTERNAL</Input><ClientDate>122515</ClientDate><ClientTime>1350</ClientTime><ClientMAC>FFFFFFFFFFFF</ClientMAC><Lane>VRB_AUS_04</Lane></PLRequest>"));
 
-			post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
-			HttpResponse response = client.execute(post);
-			BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-			String line = "";
-			while ((line = rd.readLine()) != null) {
-				System.out.println(line);
-			}
+            HttpResponse response = client.execute(post);
+            BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+            String line = "";
+            while ((line = rd.readLine()) != null) {
+                System.out.println(line);
+            }
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
 	}
 
